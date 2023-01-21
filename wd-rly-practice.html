@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>끝말잇기 게임</title>
+</head>
+<body>
+  <div><span id="order">1</span>번째 참가자</div>
+  <div>제시어: <span id="word"></span></div>
+  <input type="text" id="input">
+  <button>입력</button>
+  <script>
+    const playNumber = Number(prompt('몇 명이 참가하나요?'));
+    $button = document.querySelector('button');
+    $input = document.querySelector('#input')
+    $word = document.querySelector('#word');
+
+    let word;
+    let newWord;
+
+    const onClickButton = function() {
+      if (!word) {      //제시어가 비어있다 = 첫번째 참가자이다
+        word = newWord; //word = newWord
+        $word.textContent = word;
+      } else {          //제시어가 존재한다 = 첫번째 참가자가 아니다
+                        //입력된 단어가 올바른가?
+      }
+    }
+
+    const onInput = function(event) {
+      newWord = event.target.value;
+    }
+    
+
+    $input.addEventListener('input', onInput);
+    $button.addEventListener('click', onClickButton);
+
+  </script>
+</body>
+</html>
