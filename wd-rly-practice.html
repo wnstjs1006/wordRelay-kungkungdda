@@ -16,18 +16,28 @@
     $button = document.querySelector('button');
     $input = document.querySelector('#input')
     $word = document.querySelector('#word');
+    $order = document.querySelector('#order');
 
     let word;
     let newWord;
 
     const onClickButton = function() {
-      if (!word) {      //제시어가 비어있다 = 첫번째 참가자이다
-        word = newWord; //word = newWord
+      if (!word || newWord[0] === word[word.length-1]) { //제시어가 비어있거나 입력한 단어가 올바르면
+        word = newWord;                             //word = newWord
         $word.textContent = word;
-      } else {          //제시어가 존재한다 = 첫번째 참가자가 아니다
-                        //입력된 단어가 올바른가?
-      }
-    }
+      } else {                                      //그 외의 경우에는
+          alert('틀렸습니다!');                     //틀렸다고 표시
+        }
+      
+      const order = Number($order.textContent);
+          if (order+1 > playNumber) {              //지금순서+1이 전체 참가자보다 크다면
+            $order.textContent = 1;                //다음순서는 1
+          } else {                                 //그렇지 않다면
+            $order.textContent = order+1;          //다음순서는 지금 순서+1
+          }
+      $input.value = "";                           //버튼 클릭하면 인풋창 비우기
+      $input.focus();                              //커서를 둔다
+    };
 
     const onInput = function(event) {
       newWord = event.target.value;
